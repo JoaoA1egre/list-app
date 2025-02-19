@@ -1,6 +1,10 @@
-import { useState } from 'react'
-import TaskList from './components/TaskList/TaskList';
+import { useState } from 'react';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import MainContent from './components/Main/MainContent';
+import './App.css';
 import AddTask from './components/AddTask/AddTask';
+import TaskList from './components/TaskList/TaskList';
 
 interface Task {
   id: number;
@@ -9,18 +13,22 @@ interface Task {
 
 function App() {
   const [tasks, setTasks] = useState<Task[]>([]);
-  
+
   const addTask = (taskName: string) => {
-    setTasks([...tasks, {id: tasks.length + 1, name: taskName}]);
+    setTasks([...tasks, { id: tasks.length + 1, name: taskName }]);
   };
 
   return (
-    <div className='app-container'>{/*className='App'*/}
-      <h1>Lista de Tarefas</h1>
+    <div className="app-container"> {/* Pode adicionar estilos ou classes conforme necessário */}
+    <Header />
+    <MainContent>
+      <h1>Pendências</h1>
       <AddTask onAddTask={addTask} />
       <TaskList task={tasks} />
-    </div>
+    </MainContent >
+    <Footer />
+  </div>
   );
 }
 
-export default App
+export default App;
